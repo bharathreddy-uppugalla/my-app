@@ -5,9 +5,9 @@ import logo from "../../images/logo.png";
 const NAV_ITEMS = [
   { label: "Home", path: "/student/home" },
   { label: "Job Sector", path: "/student/jobsector" },
-  { label: "Carrer Coaching", path: "/students/carrercoaching" },
-  { label: "Become a Intern", path: "/students/becomeaintern" },
-  { label: "Acadamic", path: "/students/acadamics" },
+  { label: "Career Coaching", path: "/student/careercoaching" },
+  { label: "Become a Intern", path: "/student/becomeaintern" },
+  { label: "Acadamic", path: "/student/acadamics" },
 ];
 
 const SearchFilterIcon = () => (

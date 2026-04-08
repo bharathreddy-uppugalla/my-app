@@ -3,8 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../src/pages/Landing/Home";
 import AboutPage from "../src/pages/Landing/AboutPage";
 import ContactPage from "../src/pages/Landing/ContactPage";
-import StudentHome from "./pages/Students/StudentHome";
+import StudentHome from "../src/pages/Students/StudentHome";
 import StudentContactPage from "../src/pages/Students/ContactPage";
+import JobSectorPage from "../src/pages/Students/JobSectorPage";
+import BecomeinternPage from "./pages/Students/BecomeinternPage";
+import CareerCoachingPage from "./pages/Students/CareerCoachingPage";
 
 
 
@@ -16,8 +19,11 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-         <Route path="/student/home" element={<StudentHome />} />
-         <Route path="/student/contact" element={<StudentContactPage />} />
+        <Route path="/student/home" element={<StudentHome />} />
+        <Route path="/student/jobsector" element={<JobSectorPage />} />
+        <Route path="/student/becomeaintern" element={<BecomeinternPage />} />
+        <Route path="/student/careercoaching" element={<CareerCoachingPage />} />
+        <Route path="/student/contact" element={<StudentContactPage />} />
       </Routes>
     </div>
   );
