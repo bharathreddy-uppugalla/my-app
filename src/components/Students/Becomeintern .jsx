@@ -128,6 +128,7 @@ const plans = [
   },
 ];
 
+
 /* ─────────────────────────────────────────────
    STAT PILL
 ───────────────────────────────────────────── */
@@ -155,10 +156,10 @@ function ProgramCard({ program }) {
     <div
       className="relative flex flex-col rounded-2xl bg-white overflow-hidden transition-all duration-300 cursor-pointer"
       style={{
-        border: "1px solid rgba(105,24,220,0.1)",
+        border: "1px solid rgba(105, 24, 220, 0.1)",
         boxShadow: hovered
-          ? "0 20px 60px rgba(105,24,220,0.14)"
-          : "0 2px 14px rgba(105,24,220,0.05)",
+          ? "0 20px 60px rgba(105, 24, 220, 0.14)"
+          : "0 2px 14px rgba(105, 24, 220, 0.05)",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
       }}
       onMouseEnter={() => setHovered(true)}
@@ -201,10 +202,9 @@ function ProgramCard({ program }) {
           </div>
           <div className="flex items-start justify-between gap-2">
             <span className="text-sm font-medium text-gray-400 mt-1">Partner Companies</span>
-           <div className="text-xs text-gray-400 italic">
-         Partner companies assigned after selection
-                </div>
-               
+            <div className="text-xs text-gray-400 italic">
+              Partner companies assigned after selection
+            </div>
           </div>
         </div>
 
@@ -212,7 +212,7 @@ function ProgramCard({ program }) {
         <div className="mt-auto pt-2">
           <Link to="/apply" className="block">
             <div
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-full font-body font-bold text-sm text-white transition-opacity duration-200"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-full font-body font-bold text-sm transition-opacity duration-200"
               style={{
                 background: program.gradient,
                 opacity: hovered ? 0.88 : 1,

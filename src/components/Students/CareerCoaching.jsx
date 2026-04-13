@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 
 /* ───────────────── DATA ───────────────── */
-
 const services = [
   {
     icon: Briefcase,
@@ -103,18 +102,10 @@ const plans = [
 
 /* ───────────────── COMPONENTS ───────────────── */
 
-function StatPill({ value, label }) {
-  return (
-    <div className="bg-white/10 backdrop-blur-md rounded-xl px-4 py-3 text-center border border-white/10">
-      <div className="text-lg font-bold text-white">{value}</div>
-      <div className="text-xs text-white/70">{label}</div>
-    </div>
-  );
-}
+
 
 function ServiceCard({ item }) {
   const Icon = item.icon;
-
   return (
     <div
       className="p-6 rounded-2xl bg-[#fafafa] border transition hover:shadow-md"
@@ -129,10 +120,7 @@ function ServiceCard({ item }) {
       >
         <Icon className="text-white" size={20} />
       </div>
-
-      <h3 className="font-bold text-base mb-1 text-[#1a0033]">
-        {item.title}
-      </h3>
+      <h3 className="font-bold text-base mb-1 text-[#1a0033]">{item.title}</h3>
       <p className="text-sm text-gray-500">{item.desc}</p>
     </div>
   );
@@ -140,78 +128,103 @@ function ServiceCard({ item }) {
 
 function PricingCard({ plan }) {
   const [hovered, setHovered] = useState(false);
+  const isPopular = plan.popular;
 
   return (
     <div
       className="rounded-2xl overflow-hidden transition-all duration-300 flex flex-col"
       style={{
-        background: plan.popular
+        background: isPopular
           ? "linear-gradient(160deg, #6918DC 0%, #B625B9 50%, #E94B6C 100%)"
           : "#fff",
-        border: plan.popular
+        border: isPopular
           ? "none"
           : "1px solid rgba(105,24,220,0.1)",
-        transform: plan.popular
-          ? "scale(1.05)"
+        boxShadow: isPopular
+          ? "0 24px 64px rgba(105,24,220,0.28)"
           : hovered
-          ? "translateY(-5px)"
-          : "none",
+          ? "0 16px 48px rgba(105,24,220,0.1)"
+          : "0 2px 12px rgba(105,24,220,0.05)",
+        transform: isPopular
+          ? "scale(1.04)"
+          : hovered
+          ? "translateY(-4px)"
+          : "translateY(0)",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {plan.popular && (
-        <div className="text-center pt-4 text-white text-xs flex justify-center items-center gap-1">
-          <Star size={12} /> Most Popular
+      {isPopular && (
+        <div className="flex justify-center pt-4">
+          <span className="inline-flex items-center gap-1.5 font-body font-bold text-xs px-4 py-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.2)", color: "#fff" }}>
+            <Star size={11} strokeWidth={2.5} />
+            Most Popular
+          </span>
         </div>
       )}
 
       <div className="p-7 flex flex-col gap-5 flex-1">
+        {/* Plan Name */}
         <h3
-          className="text-xl font-bold"
-          style={{ color: plan.popular ? "#fff" : "#1a0033" }}
+          className="font-body font-bold text-xl"
+          style={{ color: isPopular ? "#fff" : "#1a0033" }}
         >
           {plan.name}
         </h3>
-
+        {/* Tagline */}
         <p
-          className="text-sm"
-          style={{
-            color: plan.popular ? "rgba(255,255,255,0.7)" : "#999",
-          }}
+          className="font-body font-medium text-sm mt-1"
+          style={{ color: isPopular ? "rgba(255,255,255,0.7)" : "#999" }}
         >
           {plan.tagline}
         </p>
-
-        <div className="text-4xl font-bold">
-          {plan.price}
-          <span className="text-sm ml-1 opacity-70">
+        {/* Price */}
+        <div className="flex items-end gap-1">
+          <span
+            className="font-display"
+            style={{
+              fontSize: "3rem",
+              lineHeight: 1,
+              color: isPopular ? "#fff" : "#6918DC",
+            }}
+          >
+            {plan.price}
+          </span>
+          <span
+            className="font-body font-medium text-sm mb-1"
+            style={{ color: isPopular ? "rgba(255,255,255,0.6)" : "#aaa" }}
+          >
             {plan.period}
           </span>
         </div>
-
+        {/* Divider */}
+        <div
+          className="h-px w-full"
+          style={{
+            background: isPopular ? "rgba(255,255,255,0.2)" : "rgba(105,24,220,0.07)",
+          }}
+        />
+        {/* Features */}
         <ul className="flex flex-col gap-3 text-sm">
           {plan.features.map((f) => (
-            <li key={f} className="flex gap-2">
+            <li key={f} className="flex gap-2 items-start">
               <CheckCircle
                 size={16}
-                style={{
-                  color: plan.popular ? "#F6A83D" : "#6918DC",
-                }}
+                style={{ color: isPopular ? "#F6A83D" : "#6918DC" }}
               />
               {f}
             </li>
           ))}
         </ul>
-
+        {/* CTA Button */}
         <Link to="/apply" className="mt-auto">
           <div
-            className="mt-6 py-3 text-center rounded-full font-bold"
+            className="mt-6 py-3 text-center rounded-full font-bold cursor-pointer transition"
             style={{
-              background: plan.popular
+              background: isPopular
                 ? "#fff"
                 : "linear-gradient(90deg,#6918DC,#E94B6C)",
-              color: plan.popular ? "#6918DC" : "#fff",
+              color: isPopular ? "#6918DC" : "#fff",
             }}
           >
             {plan.cta} <ArrowRight size={14} className="inline ml-1" />
@@ -226,9 +239,9 @@ function PricingCard({ plan }) {
 
 export default function CareerCoaching() {
   return (
-    <div className="w-full font-sans">
+    <div className="w-full font-body">
 
-      {/* HERO */}
+      {/* ── HERO ── */}
       <section
         className="relative py-24 text-white text-center overflow-hidden"
         style={{
@@ -238,55 +251,72 @@ export default function CareerCoaching() {
       >
         {/* Blobs */}
         <div
-          className="absolute rounded-full"
+          className="absolute rounded-full pointer-events-none"
           style={{
-            width: 480,
-            height: 480,
-            background: "rgba(249,168,61,0.16)",
-            top: -140,
-            right: -120,
-            filter: "blur(90px)",
+            width: 440,
+            height: 440,
+            background: "rgba(249,168,61,0.18)",
+            top: -130,
+            right: -110,
+            filter: "blur(80px)",
           }}
         />
         <div
-          className="absolute rounded-full"
+          className="absolute rounded-full pointer-events-none"
           style={{
-            width: 400,
-            height: 400,
-            background: "rgba(105,24,220,0.2)",
-            bottom: -110,
-            left: -100,
+            width: 380,
+            height: 380,
+            background: "rgba(105,24,220,0.22)",
+            bottom: -100,
+            left: -90,
             filter: "blur(80px)",
           }}
         />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6">
-          <span className="text-xs tracking-widest text-white/60 mb-4 block">
-            Coaching Program
+          <span
+            className="inline-block font-body font-bold text-white/60 mb-4"
+            style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase" }}
+          >
+            Career Pathways
           </span>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+          <h1
+            className="font-display text-contact text-white mb-4"
+            style={{ letterSpacing: 1 }}
+          >
             Career{" "}
-            <span className="bg-gradient-to-r from-yellow-400 to-white bg-clip-text text-transparent">
+            <span
+              style={{
+                background:
+                  "linear-gradient(90deg, #F6A83D 0%, #ffffff 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
               Coaching
             </span>
           </h1>
 
-          <p className="text-white/75 text-lg mb-10 max-w-xl mx-auto">
-            Launch your career with prestigious internships at top companies.
+          <p className="font-body font-medium text-white/75 text-lg mb-8">
+            Choose our career coaching program to achieve a professional role in desire industry.
           </p>
 
-          <Link to="/apply">
-            <button className="bg-white text-purple-700 px-8 py-4 rounded-full font-bold hover:scale-105 transition">
-              Get In Touch
-            </button>
-          </Link>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-3 max-w-xl mx-auto mt-10">
-            <StatPill value="190+" label="Students" />
-            <StatPill value="85%" label="Success Rate" />
-            <StatPill value="5.0★" label="Rating" />
+          {/* Pills */}
+          <div className="flex flex-wrap gap-3 justify-center">
+            {["Coaching materials", "1 on 1 session", "interview preparation"].map((pill) => (
+              <span
+                key={pill}
+                className="font-body font-bold text-sm text-white px-5 py-2 rounded-full"
+                style={{
+                  border: "1.5px solid rgba(255,255,255,0.35)",
+                  background: "rgba(255,255,255,0.1)",
+                }}
+              >
+                {pill}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -297,7 +327,6 @@ export default function CareerCoaching() {
           <h2 className="text-3xl font-bold text-center mb-12">
             Our Coaching Services
           </h2>
-
           <div className="grid md:grid-cols-3 gap-6">
             {services.map((s) => (
               <ServiceCard key={s.title} item={s} />
@@ -309,10 +338,7 @@ export default function CareerCoaching() {
       {/* PROCESS */}
       <section className="py-20 bg-[#fafafa]">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            How It Works
-          </h2>
-
+          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
           {steps.map((step, i) => (
             <div key={i} className="flex items-center gap-4 p-5 bg-white rounded-xl mb-3">
               <div className="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">
@@ -328,10 +354,7 @@ export default function CareerCoaching() {
       {/* PRICING */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Coaching Plans
-          </h2>
-
+          <h2 className="text-3xl font-bold text-center mb-12">Coaching Plans</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {plans.map((p) => (
               <PricingCard key={p.name} plan={p} />
@@ -339,7 +362,6 @@ export default function CareerCoaching() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
