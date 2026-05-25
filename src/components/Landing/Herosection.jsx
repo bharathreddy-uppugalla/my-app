@@ -21,7 +21,7 @@ const panels = [
     ),
   },
   {
-    path: "/industry",
+    path: "/industry/home",
     img: businessImg,
     alt: "Industry Professional",
     badge: "Industry Professionals & Owners",

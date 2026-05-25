@@ -9,6 +9,10 @@ import JobSectorPage from "../src/pages/Students/JobSectorPage";
 import BecomeinternPage from "./pages/Students/BecomeinternPage";
 import CareerCoachingPage from "./pages/Students/CareerCoachingPage";
 
+// Industry Pages
+
+import IndustryHome from "./pages/Industry/IndustryHome";
+
 
 
 
@@ -19,11 +23,18 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+
+        {/* Students Pages */}
         <Route path="/student/home" element={<StudentHome />} />
         <Route path="/student/jobsector" element={<JobSectorPage />} />
         <Route path="/student/becomeaintern" element={<BecomeinternPage />} />
         <Route path="/student/careercoaching" element={<CareerCoachingPage />} />
         <Route path="/student/contact" element={<StudentContactPage />} />
+
+        {/* Industry Pages */}
+
+                <Route path="/industry/home" element={<IndustryHome />} />
+
       </Routes>
     </div>
   );
