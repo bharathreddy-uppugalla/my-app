@@ -5,6 +5,7 @@ import WhatWeOffer from "../../components/Industry/WhatWeOffer";
 import WhyVisgrow from "../../components/Industry/WhyVisgrow";
 import OwnerManagerProgram from "../../components/Industry/OwnerManagerProgram";
 import IndustryCTA from "../../components/Industry/IndustryCTA";
+import Testimonials from "../../components/Industry/Testimonials";
 
 
 export default function StudentHome() {
@@ -15,6 +16,7 @@ export default function StudentHome() {
    <WhatWeOffer/>
    <WhyVisgrow/>
    <OwnerManagerProgram/>
+   <Testimonials/>
    <IndustryCTA/>
    <Footer/>
 
