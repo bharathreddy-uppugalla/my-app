@@ -12,6 +12,9 @@ import CareerCoachingPage from "./pages/Students/CareerCoachingPage";
 // Industry Pages
 
 import IndustryHome from "./pages/Industry/IndustryHome";
+import IndustryWorkshopsPage from "./pages/Industry/IndustryWorkshopsPage";
+import IndustryHireInternsPage from "./pages/Industry/IndustryHireInternsPage";
+import IndustryBusinessAdvisoryPage from "./pages/Industry/IndustryBusinessAdvisoryPage";
 
 
 
@@ -34,6 +37,11 @@ const App = () => {
         {/* Industry Pages */}
 
                 <Route path="/industry/home" element={<IndustryHome />} />
+                <Route path="/industry/workshops" element={<IndustryWorkshopsPage />} />
+                <Route path="/industry/interns" element={<IndustryHireInternsPage/>} />
+                <Route path="/industry/advisory" element={<IndustryBusinessAdvisoryPage/>} />
+
+
 
       </Routes>
     </div>

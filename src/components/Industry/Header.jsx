@@ -4,11 +4,11 @@ import logo from "../../images/logo.png";
 
 const NAV_ITEMS = [
     { label: "Home", path: "/industry/home" },
-  { label: "Workshops", path: "/industry/workshops" },
-  { label: "Upskilling Staff", path: "/industry/upskilling" },
+  // { label: "Workshops", path: "/industry/workshops" },
+  { label: "Upskilling Staff", path: "/industry/workshops" },
   { label: "Hire Skilled Interns", path: "/industry/interns" },
   { label: "Business Advisory", path: "/industry/advisory" },
-  { label: "Owner Manager Program", path: "/industry/owners" },
+  // { label: "Owner Manager Program", path: "/industry/owners" },
   { label: "Leadership Development", path: "/industry/leadership" },
 ];
 
